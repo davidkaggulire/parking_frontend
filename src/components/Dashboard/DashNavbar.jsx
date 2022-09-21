@@ -13,8 +13,8 @@ const DashNavbar = () => {
   };
 
   return (
-    <nav className=" w-[1000px] md:w-full shadow-md z-1000  ">
-      <ul className="flex justify-between p-2">
+    <nav className=" w-fit md:w-full shadow-md z-1000  ">
+      <ul className="flex flex-row justify-between md:justify-end p-2">
         <div className="w-screen flex flex-row md:hidden justify-between items-center">
           <div>
             <h3 className="italic text-2xl font-bold my-2 p-[0.28rem] flex gap-1 items-center">
