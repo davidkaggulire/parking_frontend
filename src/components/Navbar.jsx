@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import Signup from "./Signin";
+import Signin from "./Signin";
 import { FaParking } from "react-icons/fa";
 
 const Navbar = () => {
@@ -21,7 +21,7 @@ const Navbar = () => {
 
   return (
     <div className="container mx-auto">
-      {show && <Signup onClose={hideSignInHandler} />}
+      {show && <Signin onClose={hideSignInHandler} />}
       <ul className="container w-full flex items-center justify-between p-4 text-black text-center">
         <div className=" md:flex space-x-6">
           <li className="uppercase text-2xl font-bold italic flex gap-1 items-center">
