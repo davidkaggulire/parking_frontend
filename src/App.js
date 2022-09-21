@@ -7,6 +7,12 @@ const WelcomePage = React.lazy(() => import("./components/Welcome"));
 const DashboardPage = React.lazy(() =>
   import("./components/Dashboard/Dashboard")
 );
+const CartypesPage = React.lazy(() =>
+  import("./components/Dashboard/Cartypes")
+);
+const ChargesPage = React.lazy(() =>
+  import("./components/Dashboard/Charges")
+);
 
 function App() {
   return (
@@ -14,6 +20,9 @@ function App() {
       <Routes>
         <Route path="/" element={<WelcomePage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/cartypes" element={<CartypesPage />} />
+        <Route path="/charges" element={<ChargesPage />} />
+        
       </Routes>
     </Suspense>
   );
