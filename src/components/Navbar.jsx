@@ -1,19 +1,33 @@
 import React, { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import Signup from "./Signin";
+import { FaParking } from "react-icons/fa";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
+  const [show, setShow] = useState(false);
 
   const handleNav = () => {
-    console.log("here we are");
     setNav(!nav);
+  };
+
+  const showSignInHandler = () => {
+    setShow(true);
+  };
+
+  const hideSignInHandler = () => {
+    setShow(false);
   };
 
   return (
     <div className="container mx-auto">
+      {show && <Signup onClose={hideSignInHandler} />}
       <ul className="container w-full flex items-center justify-between p-4 text-black text-center">
         <div className=" md:flex space-x-6">
-          <li className="uppercase text-2xl font-bold italic">PARKEY</li>
+          <li className="uppercase text-2xl font-bold italic flex gap-1 items-center">
+            <FaParking className="text-[#6472EE]" />
+            PARKEY
+          </li>
         </div>
 
         <div onClick={handleNav} className="block md:hidden">
@@ -21,7 +35,13 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex flex-row gap-6 items-center">
-          <li className=" text-gray-700 hover:cursor-pointer">Sign In</li>
+          <li
+            className=" text-gray-700 hover:cursor-pointer"
+            onClick={showSignInHandler}
+          >
+            Sign In
+          </li>
+
           <li className="text-gray-700 hover:cursor-pointer">Home</li>
           <li className="hover:cursor-pointer">
             <a
@@ -44,7 +64,12 @@ const Navbar = () => {
             PARKEY
           </h1>
           <li className="p-4 border-b border-gray-600">Home</li>
-          <li className="p-4 border-b border-gray-600">Sign In</li>
+          <li
+            className="p-4 border-b border-gray-600"
+            onClick={showSignInHandler}
+          >
+            Sign In
+          </li>
           <li className="p-4 border-b border-gray-600">Contact</li>
           <li className="p-4">About</li>
         </div>
