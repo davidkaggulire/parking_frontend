@@ -1,19 +1,21 @@
-import './App.css';
-import About from './components/About';
-import Footer from './components/Footer';
-import Home from './components/Home';
-import Navbar from './components/Navbar';
-import Newsletter from './components/Newsletter';
+import React, { Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+
+
+const WelcomePage = React.lazy(() => import("./components/Welcome"));
+const DashboardPage = React.lazy(() =>
+  import("./components/Dashboard/Dashboard")
+);
 
 function App() {
   return (
-    <div className="">
-      <Navbar />
-      <Home />
-      <About />
-      <Newsletter />
-      <Footer />
-    </div>
+    <Suspense>
+      <Routes>
+        <Route path="/" element={<WelcomePage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+      </Routes>
+    </Suspense>
   );
 }
 
