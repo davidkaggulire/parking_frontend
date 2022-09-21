@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BiSearch, BiDotsVerticalRounded } from "react-icons/bi";
+import { BiDotsVerticalRounded } from "react-icons/bi";
 import { FaParking } from "react-icons/fa";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import Avatar from "../../assets/avatar.png";
@@ -13,7 +13,7 @@ const DashNavbar = () => {
   };
 
   return (
-    <nav className=" w-fit md:w-full shadow-md z-1000  ">
+    <nav className=" w-fit md:w-full shadow-md z-1000 bg-white">
       <ul className="flex flex-row justify-between md:justify-end p-2">
         <div className="w-screen flex flex-row md:hidden justify-between items-center">
           <div>
@@ -34,7 +34,7 @@ const DashNavbar = () => {
                 : "ease-in-out duration-500 fixed left-[-100%]"
             }
           >
-            <h1 className="w-full text-3xl font-bold text-[#00df9a] m-4 flex gap-2 items-center italic">
+            <h1 className="w-full text-2xl font-bold text-[#00df9a] m-4 flex gap-2 items-center italic">
               <FaParking className="text-[#6472EE]" />
               PARKEY
             </h1>
