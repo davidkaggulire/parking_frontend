@@ -7,12 +7,15 @@ import {
   FaTwitterSquare,
 } from "react-icons/fa";
 
+import { FaParking } from "react-icons/fa";
+
 const Footer = () => {
   return (
     <div className="bg-black">
       <div className="max-w-[1240px] mx-auto py-16 px-4 grid lg:grid-cols-3 gap-8 text-gray-300">
         <div className="flex flex-col justify-center">
-          <h1 className="w-full text-3xl font-bold italic text-brightGreen">
+          <h1 className="w-full text-3xl font-bold italic text-brightGreen flex gap-1">
+            <FaParking className="text-[#6472EE]" />
             PARKEY
           </h1>
           <div className="flex items-center gap-5 my-6">
