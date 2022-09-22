@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import DashNavbar from "./DashNavbar";
 import Sidebar from "./Sidebar";
 import { FaPlus } from "react-icons/fa";
-import NewCarType from "../Forms/NewCarType";
 import TruckCharge from "../Forms/TruckCharge";
 import TaxiCharge from "../Forms/TaxiCharge";
-import BusCharge from "../Forms/BusCharge";
+
 import CoasterCharge from "../Forms/CoasterCharge";
 import CarCharge from "../Forms/CarCharge";
 import BodaCharge from "../Forms/BodaCharge";
@@ -16,7 +15,6 @@ const Charges = () => {
   const [showTruck, setShowTruck] = useState(false);
   const [showCoaster, setShowCoaster] = useState(false);
   const [showTaxi, setShowTaxi] = useState(false);
-  const [showBus, setShowBus] = useState(false);
 
   const showTruckHandler = () => {
     setShowTruck(true);
@@ -24,14 +22,6 @@ const Charges = () => {
 
   const hideTruckHandler = () => {
     setShowTruck(false);
-  };
-
-  const showBusHandler = () => {
-    setShowBus(true);
-  };
-
-  const hideBusHandler = () => {
-    setShowBus(false);
   };
 
   const showCoasterHandler = () => {
@@ -70,7 +60,6 @@ const Charges = () => {
     <div className="flex flex-row ">
       {showTruck && <TruckCharge onClose={hideTruckHandler} />}
       {showTaxi && <TaxiCharge onClose={hideTaxiHandler} />}
-      {showBus && <BusCharge onClose={hideBusHandler} />}
       {showCoaster && <CoasterCharge onClose={hideCoasterHandler} />}
       {showCar && <CarCharge onClose={hideCarHandler} />}
       {showBoda && <BodaCharge onClose={hideBodaHandler} />}
@@ -89,7 +78,7 @@ const Charges = () => {
                 Add Truck Charges
               </button>
             </div>
-            <table class="w-full table-auto border-[#ccc] bg-[#eff1f4] ">
+            <table class="w-full table-auto border-[#ccc] bg-[#eff1f4] text-gray-700">
               <thead className="border-black">
                 <tr className="p-3 ">
                   <th className="p-3">Id</th>
@@ -208,17 +197,17 @@ const Charges = () => {
           </div>
         </div>
 
-        {/* Bus charges */}
-        <div className="p-5 md:p-10  mt-10 ">
+        {/* Boda charges */}
+        <div className="p-5 md:p-10 mt-10 ">
           <div className="shadow-md border-slate-500 rounded-lg">
             <div className="flex flex-row items-center justify-between mb-8 p-2 text-md">
-              <h3 className="font-bold">Bus Charges</h3>
+              <h3 className="font-bold">Boda Charges</h3>
               <button
-                onClick={showBusHandler}
+                onClick={showBodaHandler}
                 className="flex items-center justify-between gap-2 bg-[#3A36E4] py-2 px-2 w-fit border-0 font text-white text-md rounded-md mt-6 transition ease-in-out delay-400 hover:bg-[#6472EE]"
               >
                 <FaPlus />
-                Add Bus Charges
+                Add Boda Charges
               </button>
             </div>
             <table class="w-full table-auto border-[#ccc] bg-[#eff1f4] ">
@@ -252,17 +241,17 @@ const Charges = () => {
           </div>
         </div>
 
-        {/* Boda charges */}
+        {/* Taxi charges */}
         <div className="p-5 md:p-10 mt-10 ">
           <div className="shadow-md border-slate-500 rounded-lg">
             <div className="flex flex-row items-center justify-between mb-8 p-2 text-md">
-              <h3 className="font-bold">Boda Charges</h3>
+              <h3 className="font-bold">Taxi Charges</h3>
               <button
-                onClick={showBodaHandler}
+                onClick={showTaxiHandler}
                 className="flex items-center justify-between gap-2 bg-[#3A36E4] py-2 px-2 w-fit border-0 font text-white text-md rounded-md mt-6 transition ease-in-out delay-400 hover:bg-[#6472EE]"
               >
                 <FaPlus />
-                Add Boda Charges
+                Add Taxi Charges
               </button>
             </div>
             <table class="w-full table-auto border-[#ccc] bg-[#eff1f4] ">
