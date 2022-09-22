@@ -14,7 +14,7 @@ const TruckCharge = (props) => {
             </button>
           </div>
 
-          <h1 className="text-center">Add Truck Parking Charge</h1>
+          <h1 className="text-center text-gray-700 text-xl">Add Truck Parking Charge</h1>
           <Formik
             initialValues={{ duration: "", charge: "" }}
             validate={(values) => {

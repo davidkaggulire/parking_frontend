@@ -14,7 +14,7 @@ const CarCharge = (props) => {
             </button>
           </div>
 
-          <h1 className="text-center">Add Car Parking Charge</h1>
+          <h1 className="text-center text-gray-700 text-xl">Add Car Parking Charge</h1>
           <Formik
             initialValues={{ duration: "", charge: "" }}
             validate={(values) => {
@@ -35,7 +35,7 @@ const CarCharge = (props) => {
             }}
           >
             {({ isSubmitting }) => (
-              <Form className="flex flex-col mt-4">
+              <Form className="flex flex-col mt-4 text-gray-700">
                 <label className="mb-2">Duration</label>
                 <Field
                   type="text"

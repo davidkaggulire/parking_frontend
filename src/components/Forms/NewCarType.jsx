@@ -15,7 +15,7 @@ const NewCarType = (props) => {
             </button>
           </div>
 
-          <h1 className="text-center">Add Car Type</h1>
+          <h1 className="text-center text-gray-700 text-xl">Add Car Type</h1>
           <Formik
             initialValues={{ type: "" }}
             validate={(values) => {
@@ -33,7 +33,7 @@ const NewCarType = (props) => {
             }}
           >
             {({ isSubmitting }) => (
-              <Form className="flex flex-col mt-4">
+              <Form className="flex flex-col mt-4 text-gray-700">
                 <label className="mb-2">Car Type</label>
                 <Field
                   type="text"
