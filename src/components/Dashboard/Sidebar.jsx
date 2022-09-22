@@ -32,7 +32,7 @@ const Sidebar = () => {
           </li>
           <li className="flex flex-row p-4 items-center gap-8 hover:bg-[#6472EE] hover:cursor-pointer">
             <FaBusAlt size={25} className="text-green-400" />
-            <p>Bus</p>
+            <p>Coaster</p>
           </li>
           <li className="flex flex-row p-4 items-center gap-8 hover:bg-[#6472EE] hover:cursor-pointer">
             <FaMotorcycle size={25} />

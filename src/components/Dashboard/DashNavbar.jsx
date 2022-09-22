@@ -41,7 +41,7 @@ const DashNavbar = () => {
             <li className="p-4 border-b border-gray-600">Trucks</li>
             <li className="p-4 border-b border-gray-600">Cars</li>
             <li className="p-4 border-b border-gray-600">Taxi</li>
-            <li className="p-4 border-b border-gray-600">Bus</li>
+            <li className="p-4 border-b border-gray-600">Coasters</li>
             <li className="p-4">Boda</li>
           </ul>
         </div>
