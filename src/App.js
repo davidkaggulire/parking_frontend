@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 
-
 const WelcomePage = React.lazy(() => import("./components/Welcome"));
 const DashboardPage = React.lazy(() =>
   import("./components/Dashboard/Dashboard")
@@ -10,8 +9,9 @@ const DashboardPage = React.lazy(() =>
 const CartypesPage = React.lazy(() =>
   import("./components/Dashboard/Cartypes")
 );
-const ChargesPage = React.lazy(() =>
-  import("./components/Dashboard/Charges")
+const ChargesPage = React.lazy(() => import("./components/Dashboard/Charges"));
+const VehiclePage = React.lazy(() =>
+  import("./components/Dashboard/VehiclesList")
 );
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/cartypes" element={<CartypesPage />} />
         <Route path="/charges" element={<ChargesPage />} />
-        
+        <Route path="/vehicles" element={<VehiclePage />} />
       </Routes>
     </Suspense>
   );
