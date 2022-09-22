@@ -79,7 +79,7 @@ const Signin = (props) => {
                 )}
               </div>
             </div>
-            <button className="bg-[#3A36E4] py-2 w-full border-0 font text-white text-lg rounded-md mt-6 transition ease-in-out delay-400 hover:bg-[#6472EE]">
+            <button className="bg-[#3A36E4] py-2 w-full border-0 text-white text-lg rounded-md mt-6 transition ease-in-out delay-400 hover:bg-[#6472EE]">
               Sign In
             </button>
             <div className="mt-5 flex flex-row gap-2">
