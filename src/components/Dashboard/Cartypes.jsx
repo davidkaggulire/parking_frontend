@@ -30,7 +30,7 @@ const Cartypes = () => {
                 Add Car Type
               </button>
             </div>
-            <table class="w-full table-auto border-[#ccc] bg-[#eff1f4] ">
+            <table class="w-full table-auto border-[#ccc] bg-[#eff1f4] text-gray-700">
               <thead className="border-black">
                 <tr className="p-3 ">
                   <th className="p-3">Id</th>
