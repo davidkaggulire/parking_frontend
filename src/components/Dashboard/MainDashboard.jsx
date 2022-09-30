@@ -4,6 +4,7 @@ import { FaParking } from "react-icons/fa";
 import { AiTwotoneCar } from "react-icons/ai";
 import { MdOutlineLocalHospital } from "react-icons/md";
 import Chart from "./Chart";
+import { useNavigate } from "react-router-dom";
 
 const data = [
   { year: 2011, efficiency: 33.1, sales: 6093000 },
@@ -16,10 +17,24 @@ const data = [
 ];
 
 const MainDashboard = () => {
+  const navigate = useNavigate();
+
+  const vehicleNav = () => {
+    navigate("/vehicles");
+  }
+
+  const chargesNav = () => {
+    navigate("/charges");
+  }
+
+  const carTypeNav = () => {
+    navigate("/cartypes");
+  }
+
   return (
     <div className="p-6 xs:p-10 sm:p-8 md:p-10 lg:p-10 w-full md:w-full lg:w-full flex flex-col gap-2 h-[100vh]">
       <div className="flex flex-row gap-6 xs:flex-row sm:flex-row md:flex-row lg:flex-row xs:gap-10 sm:gap-6 md:gap-12 lg:gap-14 flex-wrap md:flex-wrap items-center ">
-        <div className="flex flex-col-reverse items-center h-40 w-36 xs:w-36 sm:w-60 md:w-48 lg:w-1/5 md:flex-row justify-between md:gap-6 lg:gap-6 border-1 border-transparent rounded-md shadow-md p-6 hover:cursor-pointer hover:shadow-lg bg-gradient-to-r from-blue-500 to-blue-400">
+        <div onClick={vehicleNav} className="flex flex-col-reverse items-center h-40 w-36 xs:w-36 sm:w-60 md:w-48 lg:w-1/5 md:flex-row justify-between md:gap-6 lg:gap-6 border-1 border-transparent rounded-md shadow-md p-6 hover:cursor-pointer hover:shadow-lg bg-gradient-to-r from-blue-500 to-blue-400">
           <div className="text-xl">
             <h3 className="text-white">Vehicles</h3>
             <p className="text-4xl text-white">20</p>
@@ -38,7 +53,7 @@ const MainDashboard = () => {
             <FaParking size={30} />
           </div>
         </div>
-        <div className="flex flex-col-reverse items-center h-40 w-36 xs:w-36 sm:w-60 md:w-48 lg:w-1/5 md:flex-row justify-between gap-6 border-1 border-transparent rounded-md shadow p-6 hover:cursor-pointer hover:shadow-lg bg-gradient-to-r from-green-400 to-green-300">
+        <div onClick={carTypeNav} className="flex flex-col-reverse items-center h-40 w-36 xs:w-36 sm:w-60 md:w-48 lg:w-1/5 md:flex-row justify-between gap-6 border-1 border-transparent rounded-md shadow p-6 hover:cursor-pointer hover:shadow-lg bg-gradient-to-r from-green-400 to-green-300">
           <div className="text-xl text-gray-700">
             <h3>Car Clinic</h3>
             <p className="text-4xl text-white">20</p>
