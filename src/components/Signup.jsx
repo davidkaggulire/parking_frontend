@@ -51,6 +51,7 @@ const Signup = (props) => {
               <input
                 className="text-lg text-gray-700 w-full bg-transparent border border-[#ccc] transition ease-in-out delay-500 mt-1 p-1 rounded-md hover:border-[gray-200] focus:outline-none"
                 type="email"
+                name="email"
               />
             </div>
 
@@ -59,7 +60,8 @@ const Signup = (props) => {
               <div className="flex flex-row items-center">
                 <input
                   className="text-lg w-full bg-transparent border border-[#ccc] transition ease-in-out delay-500 mt-1 p-1 rounded-md hover:border-gray-200 focus:outline-none"
-                  type="password"
+                  type={passwordType}
+                  name="password"
                 />
                 {passwordType === "password" ? (
                   <FaRegEyeSlash
