@@ -1,16 +1,26 @@
 import React from "react";
 import { BsTruck } from "react-icons/bs";
-import { AiFillCar } from "react-icons/ai";
+import { AiFillCar, AiFillHome } from "react-icons/ai";
 import { FaTaxi } from "react-icons/fa";
 import { FaBusAlt } from "react-icons/fa";
 import { FaMotorcycle } from "react-icons/fa";
 import { FaParking } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+  const homeRouter = () => {
+    navigate("/dashboard");
+  };
+
   return (
     <div className="hidden md:inline  fixed w-[220px] h-screen max-h-screen text-dark-gray shadow-md">
       <div className="flex">
-        <h3 className="italic text-3xl font-bold my-2 p-[0.28rem] flex gap-1 items-center ">
+        <h3
+          onClick={homeRouter}
+          className="italic text-3xl font-bold my-2 p-[0.28rem] flex gap-1 items-center hover:cursor-pointer"
+        >
           <FaParking className="text-[#6472EE]" />
           PARKEY
         </h3>
@@ -18,6 +28,10 @@ const Sidebar = () => {
 
       <div className="">
         <ul className="flex flex-col ">
+          <li onClick={homeRouter} className="flex flex-row p-4  items-center gap-8 hover:bg-[#6472EE] hover:cursor-pointer">
+            <AiFillHome size={25} className="text-black" id="truck" />
+            <p>Dashboard</p>
+          </li>
           <li className="flex flex-row p-4  items-center gap-8 hover:bg-[#6472EE] hover:cursor-pointer">
             <BsTruck size={25} className="text-black" id="truck" />
             <p>Truck</p>
