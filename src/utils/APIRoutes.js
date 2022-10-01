@@ -9,5 +9,5 @@ export const forgotPassword = `${host}/api/v1/users/forgotPassword`;
 export const uploadImage = `${host}/api/v1/users/updateMe`;
 export const getCurrentUserRoute = `${host}/api/v1/users/me`;
 
-export const sendMessageRoute = `${host}/api/v1/messages/addMessage`;
+export const getAllVehicles = `${host}/api/v1/vehicles`;
 export const getAllMessageRoute = `${host}/api/v1/messages/getMessages`;

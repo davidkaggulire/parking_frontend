@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DashNavbar from "./DashNavbar";
 import Sidebar from "./Sidebar";
 import { FaPlus } from "react-icons/fa";
 import RegisterVehicle from "../Forms/RegisterVehicle";
+import { getAllVehicles } from "../../utils/APIRoutes";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { toastOptions } from "../../utils/toastFile";
 
 const VehiclesList = () => {
   const [show, setShow] = useState(false);
+  const token = useSelector((state) => state.login.token);
+  const [vehicles, setVehicles] = useState([]);
 
   const showVehicleHandler = () => {
     setShow(true);
@@ -14,6 +20,36 @@ const VehiclesList = () => {
   const hideVehicleHandler = () => {
     setShow(false);
   };
+
+  useEffect(() => {
+    const vehicleHandler = async () => {
+      const response = await fetch(getAllVehicles, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log(response);
+
+      const data = await response.json();
+      console.log(data);
+      console.log(data.vehicles);
+
+      if (data.status === "fail") {
+        console.log("failed");
+        toast.error(data.message, toastOptions);
+      }
+
+      if (data.status === "success") {
+        setVehicles(data.vehicles);
+        console.log("success");
+        // dispatch({ type: "DESTROY_SESSION" });
+        // navigate("/");
+      }
+    };
+    vehicleHandler();
+  }, [token]);
 
   return (
     <div className="flex flex-row ">
@@ -43,29 +79,19 @@ const VehiclesList = () => {
                   <th className="p-3">Model</th>
                 </tr>
               </thead>
+
               <tbody>
-                <tr className="border-1 border-[#ddd]">
-                  <td className="p-4">The Sliding</td>
-                  <td className="p-4">Malcolm Lockyer</td>
-                  <td className="p-4">Malcolm Lockyer</td>
-                  <td className="p-4">Malcolm Lockyer</td>
-                  <td className="p-4">Malcolm Lockyer</td>
-                </tr>
-                <tr>
-                  <td className="p-4">Witchy Woman</td>
-                  <td className="p-4">The Eagles</td>
-                  <td className="p-4">The Eagles</td>
-                  <td className="p-4">The Eagles</td>
-                  <td className="p-4">The Eagles</td>
-                </tr>
-                <tr>
-                  <td className="p-4">Shining Star</td>
-                  <td className="p-4">Earth, Wind, and Fire</td>
-                  <td className="p-4">Earth, Wind, and Fire</td>
-                  <td className="p-4">Earth, Wind, and Fire</td>
-                  <td className="p-4">Earth, Wind, and Fire</td>
-                </tr>
+                {vehicles.map((vehicle, index) => (
+                  <tr data-index={index} className="border-1 border-[#ddd]">
+                    <td className="p-4">{vehicle.id}</td>
+                    <td className="p-4">{vehicle.driver_name}</td>
+                    <td className="p-4">{vehicle.number_plate}</td>
+                    <td className="p-4">{vehicle.car_type}</td>
+                    <td className="p-4">{vehicle.model}</td>
+                  </tr>
+                ))}
               </tbody>
+
             </table>
           </div>
         </div>
