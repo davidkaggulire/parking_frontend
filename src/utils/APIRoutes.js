@@ -11,3 +11,5 @@ export const getCurrentUserRoute = `${host}/api/v1/users/me`;
 
 export const getAllVehicles = `${host}/api/v1/vehicles`;
 export const getAllMessageRoute = `${host}/api/v1/messages/getMessages`;
+
+export const getCarTypes = `${host}/api/v1/cartypes`;
