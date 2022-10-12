@@ -9,7 +9,8 @@ module.exports = {
         brightGreen: '#00cc66',
         black: '#000300',
         cyan: '#E1F0F0',
-        brightCyan: '#7BFFF0'
+        brightCyan: '#7BFFF0',
+        lightBlack: '#000000d9',
       }
     },
     screens: {
