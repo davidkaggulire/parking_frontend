@@ -8,6 +8,23 @@ import TaxiCharge from "../Forms/TaxiCharge";
 import CoasterCharge from "../Forms/CoasterCharge";
 import CarCharge from "../Forms/CarCharge";
 import BodaCharge from "../Forms/BodaCharge";
+import TruckChargesTable from "./Tables/charges/TruckChargesTable";
+import BodaChargesTable from "./Tables/charges/BodaChargesTable";
+import CoasterChargeTable from "./Tables/charges/CoasterChargeTable";
+
+import { chargeHandler } from "../../store/charge-actions";
+import { useSelector } from "react-redux";
+import {
+  bodaChargesURL,
+  carChargesURL,
+  coasterChargesURL,
+  taxiChargesURL,
+  truckChargesURL,
+} from "../../utils/APIRoutes";
+import { useEffect } from "react";
+import Pagination from "./Tables/Pagination";
+import CarChargeTable from "./Tables/charges/CarChargeTable";
+import TaxiChargeTable from "./Tables/charges/TaxiChargeTable";
 
 const Charges = () => {
   const [showCar, setShowCar] = useState(false);
@@ -15,6 +32,34 @@ const Charges = () => {
   const [showTruck, setShowTruck] = useState(false);
   const [showCoaster, setShowCoaster] = useState(false);
   const [showTaxi, setShowTaxi] = useState(false);
+
+  // truckCharges
+  const [truckChargeData, setTruckChargeData] = useState([]);
+  const [totalTruckCharges, setTotalTruckCharges] = useState(0);
+  const [currentTruckPage, setCurrentTruckPage] = useState(1);
+
+  // boda
+  const [bodaChargeData, setBodaChargeData] = useState([]);
+  const [totalBodaCharges, setTotalBodaCharges] = useState(0);
+  const [currentBodaPage, setCurrentBodaPage] = useState(1);
+
+  // taxi
+  const [taxiChargeData, setTaxiChargeData] = useState([]);
+  const [totalTaxiCharges, setTotalTaxiCharges] = useState(0);
+  const [currentTaxiPage, setCurrentTaxiPage] = useState(1);
+
+  // car
+  const [carChargeData, setCarChargeData] = useState([]);
+  const [totalCarCharges, setTotalCarCharges] = useState(0);
+  const [currentCarPage, setCurrentCarPage] = useState(1);
+
+  // coaster
+  const [coasterChargeData, setCoasterChargeData] = useState([]);
+  const [totalCoasterCharges, setTotalCoasterCharges] = useState(0);
+  const [currentCoasterPage, setCurrentCoasterPage] = useState(1);
+
+  const [loading, setLoading] = useState(false);
+  const token = useSelector((state) => state.login.token);
 
   const showTruckHandler = () => {
     setShowTruck(true);
@@ -56,6 +101,61 @@ const Charges = () => {
     setShowCar(false);
   };
 
+  useEffect(() => {
+    chargeHandler(
+      truckChargesURL,
+      currentTruckPage,
+      token,
+      setLoading,
+      setTruckChargeData,
+      setTotalTruckCharges
+    );
+  }, [currentTruckPage, token]);
+
+  useEffect(() => {
+    chargeHandler(
+      bodaChargesURL,
+      currentBodaPage,
+      token,
+      setLoading,
+      setBodaChargeData,
+      setTotalBodaCharges
+    );
+  }, [currentBodaPage, token]);
+
+  useEffect(() => {
+    chargeHandler(
+      carChargesURL,
+      currentCarPage,
+      token,
+      setLoading,
+      setCarChargeData,
+      setTotalCarCharges
+    );
+  }, [currentCarPage, token]);
+
+  useEffect(() => {
+    chargeHandler(
+      taxiChargesURL,
+      currentTaxiPage,
+      token,
+      setLoading,
+      setTaxiChargeData,
+      setTotalTaxiCharges
+    );
+  }, [currentTaxiPage, token]);
+
+  useEffect(() => {
+    chargeHandler(
+      coasterChargesURL,
+      currentCoasterPage,
+      token,
+      setLoading,
+      setCoasterChargeData,
+      setTotalCoasterCharges
+    );
+  }, [currentTaxiPage, token]);
+
   return (
     <div className="flex flex-row ">
       {showTruck && <TruckCharge onClose={hideTruckHandler} />}
@@ -78,34 +178,12 @@ const Charges = () => {
                 Add Truck Charges
               </button>
             </div>
-            <table class="w-full table-auto border-[#ccc] bg-[#eff1f4] text-gray-700">
-              <thead className="border-black">
-                <tr className="p-3 ">
-                  <th className="p-3">Id</th>
-                  <th className="p-3">Duration</th>
-                  <th className="p-3">Charge</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-1 border-[#ddd]">
-                  <td className="p-4">
-                    The Sliding Mr. Bones (Next Stop, Pottersville)
-                  </td>
-                  <td className="p-4">Malcolm Lockyer</td>
-                  <td className="p-4">Malcolm Lockyer</td>
-                </tr>
-                <tr>
-                  <td className="p-4">Witchy Woman</td>
-                  <td className="p-4">The Eagles</td>
-                  <td className="p-4">The Eagles</td>
-                </tr>
-                <tr>
-                  <td className="p-4">Shining Star</td>
-                  <td className="p-4">Earth, Wind, and Fire</td>
-                  <td className="p-4">Earth, Wind, and Fire</td>
-                </tr>
-              </tbody>
-            </table>
+            <TruckChargesTable data={truckChargeData} />
+            <Pagination
+              totalRows={totalTruckCharges}
+              pageChangeHandler={setCurrentTruckPage}
+              rowsPerPage={5}
+            />
           </div>
         </div>
 
@@ -122,34 +200,12 @@ const Charges = () => {
                 Add Car Charges
               </button>
             </div>
-            <table class="w-full table-auto border-[#ccc] bg-[#eff1f4] ">
-              <thead className="border-black">
-                <tr className="p-3 ">
-                  <th className="p-3">Id</th>
-                  <th className="p-3">Duration</th>
-                  <th className="p-3">Charge</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-1 border-[#ddd]">
-                  <td className="p-4">
-                    The Sliding Mr. Bones (Next Stop, Pottersville)
-                  </td>
-                  <td className="p-4">Malcolm Lockyer</td>
-                  <td className="p-4">Malcolm Lockyer</td>
-                </tr>
-                <tr>
-                  <td className="p-4">Witchy Woman</td>
-                  <td className="p-4">The Eagles</td>
-                  <td className="p-4">The Eagles</td>
-                </tr>
-                <tr>
-                  <td className="p-4">Shining Star</td>
-                  <td className="p-4">Earth, Wind, and Fire</td>
-                  <td className="p-4">Earth, Wind, and Fire</td>
-                </tr>
-              </tbody>
-            </table>
+            <CarChargeTable data={carChargeData} />
+            <Pagination
+              totalRows={totalCarCharges}
+              pageChangeHandler={setCurrentCarPage}
+              rowsPerPage={5}
+            />
           </div>
         </div>
 
@@ -166,34 +222,13 @@ const Charges = () => {
                 Add Coaster Charges
               </button>
             </div>
-            <table class="w-full table-auto border-[#ccc] bg-[#eff1f4] ">
-              <thead className="border-black">
-                <tr className="p-3 ">
-                  <th className="p-3">Id</th>
-                  <th className="p-3">Duration</th>
-                  <th className="p-3">Charge</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-1 border-[#ddd]">
-                  <td className="p-4">
-                    The Sliding Mr. Bones (Next Stop, Pottersville)
-                  </td>
-                  <td className="p-4">Malcolm Lockyer</td>
-                  <td className="p-4">Malcolm Lockyer</td>
-                </tr>
-                <tr>
-                  <td className="p-4">Witchy Woman</td>
-                  <td className="p-4">The Eagles</td>
-                  <td className="p-4">The Eagles</td>
-                </tr>
-                <tr>
-                  <td className="p-4">Shining Star</td>
-                  <td className="p-4">Earth, Wind, and Fire</td>
-                  <td className="p-4">Earth, Wind, and Fire</td>
-                </tr>
-              </tbody>
-            </table>
+            <CoasterChargeTable data={coasterChargeData} />
+            <Pagination
+              totalRows={totalCoasterCharges}
+              pageChangeHandler={setCurrentCoasterPage}
+              rowsPerPage={5}
+            />
+           
           </div>
         </div>
 
@@ -210,34 +245,12 @@ const Charges = () => {
                 Add Boda Charges
               </button>
             </div>
-            <table class="w-full table-auto border-[#ccc] bg-[#eff1f4] ">
-              <thead className="border-black">
-                <tr className="p-3 ">
-                  <th className="p-3">Id</th>
-                  <th className="p-3">Duration</th>
-                  <th className="p-3">Charge</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-1 border-[#ddd]">
-                  <td className="p-4">
-                    The Sliding Mr. Bones (Next Stop, Pottersville)
-                  </td>
-                  <td className="p-4">Malcolm Lockyer</td>
-                  <td className="p-4">Malcolm Lockyer</td>
-                </tr>
-                <tr>
-                  <td className="p-4">Witchy Woman</td>
-                  <td className="p-4">The Eagles</td>
-                  <td className="p-4">The Eagles</td>
-                </tr>
-                <tr>
-                  <td className="p-4">Shining Star</td>
-                  <td className="p-4">Earth, Wind, and Fire</td>
-                  <td className="p-4">Earth, Wind, and Fire</td>
-                </tr>
-              </tbody>
-            </table>
+            <BodaChargesTable data={bodaChargeData} />
+            <Pagination
+              totalRows={totalBodaCharges}
+              pageChangeHandler={setCurrentBodaPage}
+              rowsPerPage={5}
+            />
           </div>
         </div>
 
@@ -254,34 +267,12 @@ const Charges = () => {
                 Add Taxi Charges
               </button>
             </div>
-            <table class="w-full table-auto border-[#ccc] bg-[#eff1f4] ">
-              <thead className="border-black">
-                <tr className="p-3 ">
-                  <th className="p-3">Id</th>
-                  <th className="p-3">Duration</th>
-                  <th className="p-3">Charge</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-1 border-[#ddd]">
-                  <td className="p-4">
-                    The Sliding Mr. Bones (Next Stop, Pottersville)
-                  </td>
-                  <td className="p-4">Malcolm Lockyer</td>
-                  <td className="p-4">Malcolm Lockyer</td>
-                </tr>
-                <tr>
-                  <td className="p-4">Witchy Woman</td>
-                  <td className="p-4">The Eagles</td>
-                  <td className="p-4">The Eagles</td>
-                </tr>
-                <tr>
-                  <td className="p-4">Shining Star</td>
-                  <td className="p-4">Earth, Wind, and Fire</td>
-                  <td className="p-4">Earth, Wind, and Fire</td>
-                </tr>
-              </tbody>
-            </table>
+            <TaxiChargeTable data={taxiChargeData}/>
+            <Pagination
+              totalRows={totalTaxiCharges}
+              pageChangeHandler={setCurrentTaxiPage}
+              rowsPerPage={5}
+            />
           </div>
         </div>
       </div>
