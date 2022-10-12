@@ -6,9 +6,11 @@ import thunk from "redux-thunk";
 
 
 import loginSlice from "./loginSlice";
+import vehicleSlice from "./vehicleSlice";
 
 const reducers = combineReducers({
   login: loginSlice.reducer,
+  vehicle: vehicleSlice.reducer
 });
 
 const rootReducer = (state, action) => {   

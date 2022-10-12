@@ -151,6 +151,7 @@ export const postLoginData = (inputData, url, navigate, setIsLoading) => {
       );
 
       toast.error("Error logging in", toastOptions);
+      setIsLoading(false)
     }
   };
 };
