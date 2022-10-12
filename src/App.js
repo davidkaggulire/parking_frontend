@@ -1,8 +1,9 @@
-import React, { Suspense, useCallback, useEffect } from "react";
+import React, { Suspense, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import { loginActions } from "./store/loginSlice";
+import { getVehicleHandler } from "./store/vehicle-actions";
 import { calculateRemainingTime } from "./utils/retrieveToken";
 
 const WelcomePage = React.lazy(() => import("./components/Welcome"));
@@ -15,6 +16,10 @@ const CartypesPage = React.lazy(() =>
 const ChargesPage = React.lazy(() => import("./components/Dashboard/Charges"));
 const VehiclePage = React.lazy(() =>
   import("./components/Dashboard/VehiclesList")
+);
+
+const ClinicPage = React.lazy(() =>
+  import("./components/pages/ClinicListPage")
 );
 
 const NotFound = React.lazy(() =>
@@ -59,6 +64,7 @@ function App() {
         {isLoggedIn && <Route path="/cartypes" element={<CartypesPage />} />}
         {isLoggedIn && <Route path="/charges" element={<ChargesPage />} />}
         {isLoggedIn && <Route path="/vehicles" element={<VehiclePage />} />}
+        {isLoggedIn && <Route path="/clinic" element={<ClinicPage />} />}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
