@@ -9,7 +9,18 @@ export const forgotPassword = `${host}/api/v1/users/forgotPassword`;
 export const uploadImage = `${host}/api/v1/users/updateMe`;
 export const getCurrentUserRoute = `${host}/api/v1/users/me`;
 
-export const getAllVehicles = `${host}/api/v1/vehicles`;
+export const getAllVehiclesURL = `${host}/api/v1/vehicles`;
 export const getAllMessageRoute = `${host}/api/v1/messages/getMessages`;
 
-export const getCarTypes = `${host}/api/v1/cartypes`;
+export const carTypesURL = `${host}/api/v1/cartypes`;
+
+// clinic services
+export const clinicService = `${host}/api/v1/cartyreservices`;
+
+// charges
+export const truckChargesURL = `${host}/api/v1/truckcharges`;
+export const taxiChargesURL = `${host}/api/v1/taxicharges`;
+export const bodaChargesURL = `${host}/api/v1/bodacharges`;
+export const carChargesURL = `${host}/api/v1/taxicharges`;
+export const coasterChargesURL = `${host}/api/v1/coastercharges`;
+
