@@ -1,24 +1,23 @@
-import React, { Fragment } from "react";
-import { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import Modal from "../Modal";
-import LoadingSpinner from "../UI/LoadingSpinner";
 import { toast, ToastContainer } from "react-toastify";
 import { toastOptions } from "../../utils/toastFile";
-import { postCharge } from "../../store/charge-actions";
-import {  taxiChargesURL } from "../../utils/APIRoutes";
+import { clinicService } from "../../utils/APIRoutes";
+import { useDispatch, useSelector } from "react-redux";
+import { postClinicService } from "../../store/clinicService-actions";
+import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
-const TaxiCharge = (props) => {
+const NewClinicService = (props) => {;
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
   const token = useSelector((state) => state.login.token);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [values, setValues] = useState({
-    duration: "",
-    charge: "",
+    service: "",
+    fee: "",
   });
 
   const handleChange = (event) => {
@@ -27,15 +26,15 @@ const TaxiCharge = (props) => {
   };
 
   const validate = () => {
-    const { duration, charge } = values;
+    const { service, fee } = values;
     console.log(values);
 
 
-    if (duration === "") {
-      toast.error("Duration required", toastOptions);
+    if (service === "") {
+      toast.error("Service cannot be empty", toastOptions);
       return false;
-    } else if (isNaN(charge)) {
-      toast.error("Charge should be a number", toastOptions);
+    } else if (isNaN(fee)) {
+      toast.error("Fee should be a number", toastOptions);
       return false;
     }
 
@@ -47,16 +46,16 @@ const TaxiCharge = (props) => {
 
     if (validate()) {
       setIsLoading(true);
-      const { duration, charge } = values;
+      const { service, fee } = values;
       console.log("clicked");
-      const chargeData = {
-        duration,
-        charge,
+      const serviceData = {
+        service,
+        fee,
       };
       dispatch(
-        postCharge(
-          chargeData,
-          taxiChargesURL,
+        postClinicService(
+          serviceData,
+          clinicService,
           navigate,
           setIsLoading,
           token
@@ -77,7 +76,7 @@ const TaxiCharge = (props) => {
           </div>
 
           <h1 className="text-center text-gray-700 text-xl">
-            Add Taxi charge
+            Register Clinic Service
           </h1>
 
           <form
@@ -85,10 +84,10 @@ const TaxiCharge = (props) => {
             className="flex flex-col mt-2 p-1 text-gray-700"
           >
             <div className="flex items-center mb-2">
-              <label className="mb-2 w-1/3">Duration</label>
+              <label className="mb-2 w-1/3">Service</label>
               <input
                 type="text"
-                name="duration"
+                name="service"
                 required
                 onChange={handleChange}
                 className="border-[#ccc] pl-2 pb-1 pt-1 border rounded-md w-2/3 focus:outline-none"
@@ -96,12 +95,10 @@ const TaxiCharge = (props) => {
             </div>
 
             <div className="flex items-center mb-2">
-              <label className="mt-2 mb-2 w-1/3">Charge</label>
+              <label className="mt-2 mb-2 w-1/3">Fee</label>
               <input
                 type="number"
-                name="charge"
-                min="1000"
-                step="500"
+                name="fee"
                 placeholder="5000"
                 required
                 onChange={handleChange}
@@ -123,4 +120,4 @@ const TaxiCharge = (props) => {
   );
 };
 
-export default TaxiCharge;
+export default NewClinicService;

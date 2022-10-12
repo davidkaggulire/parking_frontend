@@ -5,34 +5,27 @@ import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { toast, ToastContainer } from "react-toastify";
 import { toastOptions } from "../../utils/toastFile";
-import { getCarTypes } from "../../utils/APIRoutes";
+import { carTypesURL, getAllVehiclesURL } from "../../utils/APIRoutes";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { isValidPhoneNumber } from "react-phone-number-input";
+import { postVehicleData } from "../../store/vehicle-actions";
+import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "../UI/LoadingSpinner";
+import { stringContainsNumber } from "../../utils/stringChecker";
 
 const RegisterVehicle = (props) => {
-  const [isSubmitting, setSubmitting] = useState(false);
   const [value, setValue] = useState();
-  const [choice, setChoice] = useState();
-  const [vehicle, setVehicle] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [categories, setCategories] = useState(null);
   const token = useSelector((state) => state.login.token);
-
-  const handleColor = (event) => {
-    console.log(event.target.value);
-    setChoice(event.target.value);
-  };
-
-  const handleCarType = (event) => {
-    console.log(event.target.value);
-    setVehicle(event.target.value);
-  };
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const cartypes = async () => {
       try {
-        const response = await fetch(getCarTypes, {
+        const response = await fetch(carTypesURL, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -55,6 +48,8 @@ const RegisterVehicle = (props) => {
     model: "",
     ninnumber: "",
     gender: "",
+    color: "",
+    type: "",
   });
 
   const handleChange = (event) => {
@@ -68,12 +63,20 @@ const RegisterVehicle = (props) => {
   };
 
   const validate = () => {
-    const { name, plate, ninnumber, model, gender } = values;
+    const { name, plate, ninnumber, model, gender, color, type } = values;
     console.log(values);
     console.log(value);
 
+    if (stringContainsNumber(name) === false) {
+      toast.error("Name cannot have numbers", toastOptions);
+      return false;
+    }
+
     if (name === "") {
       toast.error("Name cannot be empty", toastOptions);
+      return false;
+    } else if (name[0].toUpperCase() !== name[0]) {
+      toast.error("Name should start with uppercase", toastOptions);
       return false;
     } else if (plate.length > 7) {
       toast.error("Plate No. should be 7 characters - UBC456Y", toastOptions);
@@ -96,11 +99,14 @@ const RegisterVehicle = (props) => {
     } else if (value === "") {
       toast.error("Phone number required", toastOptions);
       return false;
-    } else if (choice === "") {
-      toast.error("Choice required", toastOptions);
+    } else if (color === "") {
+      toast.error("Color required", toastOptions);
       return false;
-    } else if (vehicle === "") {
+    } else if (type === "") {
       toast.error("Car type required", toastOptions);
+      return false;
+    } else if (value === "") {
+      toast.error("Phone number is required", toastOptions);
       return false;
     }
 
@@ -112,18 +118,33 @@ const RegisterVehicle = (props) => {
 
     if (validate()) {
       setIsLoading(true);
-      const { name, plate, model, ninnumber, gender } = values;
+      const { name, plate, model, ninnumber, gender, color, type } = values;
       console.log("clicked");
-      // const inputData = {
-      //   password: password,
-      //   email: email,
-      // };
-      // dispatch(postLoginData(inputData, loginRoute, navigate, setIsLoading));
+      const vehicleData = {
+        name: name,
+        plate: plate,
+        model,
+        ninnumber,
+        gender,
+        color,
+        type,
+        phone: value,
+      };
+      dispatch(
+        postVehicleData(
+          vehicleData,
+          getAllVehiclesURL,
+          navigate,
+          setIsLoading,
+          token
+        )
+      );
     }
   };
 
   return (
     <Fragment>
+      <div className="">{isLoading && <LoadingSpinner />}</div>
       <Modal onClose={props.onClose} className="top-[-96]">
         <div className="">
           <div className="flex flex-row justify-end ">
@@ -168,9 +189,10 @@ const RegisterVehicle = (props) => {
               <select
                 name="color"
                 required
-                value={choice}
+                // value={choice}
                 defaultValue={"default"}
-                onChange={handleColor}
+                // onChange={handleColor}
+                onChange={handleChange}
                 className="border-[#ccc] p-1 border-none rounded-md w-2/3 active:border-none  focus:outline-none"
               >
                 <option value={"default"} disabled>
@@ -230,9 +252,11 @@ const RegisterVehicle = (props) => {
               {categories && (
                 <select
                   id="hello"
+                  name="type"
                   required
                   defaultValue={"default"}
-                  onChange={handleCarType}
+                  // onChange={handleCarType}
+                  onChange={handleChange}
                   className="border-[#ccc] p-1 border-none rounded-md w-2/3 focus:outline-none"
                 >
                   <option value={"default"} disabled>
