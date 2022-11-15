@@ -21,12 +21,11 @@ const data = [
 
 const MainDashboard = () => {
   const navigate = useNavigate();
-  const vehicles = useSelector((state) => state.vehicle.allVehicles);
+  const vehicles = useSelector((state) => state.vehicle.vehicleCount);
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const token = useSelector((state) => state.login.token);
-  console.log(vehicles, "here we are");
 
   const vehicleNav = () => {
     navigate("/vehicles");
