@@ -45,18 +45,18 @@ const Pagination = ({ pageChangeHandler, totalRows, rowsPerPage }) => {
     <>
       {noOfPages > 1 ? (
         <div>
-          <div className="flex flex-row justify-center gap-1">
+          <div className="flex flex-row justify-center">
             <button
               className=" text-lg border border-gray-200  text-gray-400 pl-2 pr-2 pt-1 pb-1 flex items-center hover:text-blue-500  hover:border-blue-500"
               onClick={onPrevPage}
               disabled={!canGoBack}
             >
-              <IoIosArrowBack />
+              <IoIosArrowBack />Previous
             </button>
             {pagesArr.map((num, index) => (
               <button
                 onClick={() => onPageSelect(index + 1)}
-                className={`text-xl text-gray-400 pl-2 pr-2 border border-gray-200 flex items-center hover:text-blue-500  hover:border-blue-500  ${
+                className={`text-xl pl-2 pr-2 border border-gray-200 flex items-center text-blue-500 hover:text-white hover:bg-blue-500  hover:border-blue-500  ${
                   index + 1 === currentPage
                     ? `text-blue-500 border border-blue-500`
                     : ""
@@ -70,7 +70,7 @@ const Pagination = ({ pageChangeHandler, totalRows, rowsPerPage }) => {
               onClick={onNextPage}
               disabled={!canGoNext}
             >
-              <IoIosArrowForward />
+              Next<IoIosArrowForward />
             </button>
           </div>
         </div>
