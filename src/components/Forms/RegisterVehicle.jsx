@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import Modal from "../Modal";
+import Modal from "../UI/Modal";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { toast, ToastContainer } from "react-toastify";

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Modal from "../Modal";
+import Modal from "../UI/Modal";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import { toast, ToastContainer } from "react-toastify";
 import { toastOptions } from "../../utils/toastFile";

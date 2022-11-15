@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import Modal from "../Modal";
+import Modal from "../UI/Modal";
 import { toast, ToastContainer } from "react-toastify";
 import { toastOptions } from "../../utils/toastFile";
 import { clinicService } from "../../utils/APIRoutes";
