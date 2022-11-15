@@ -12,7 +12,7 @@ import TruckChargesTable from "./Tables/charges/TruckChargesTable";
 import BodaChargesTable from "./Tables/charges/BodaChargesTable";
 import CoasterChargeTable from "./Tables/charges/CoasterChargeTable";
 
-import { chargeHandler } from "../../store/charge-actions";
+import { getChargesHandler } from "../../store/charge-actions";
 import { useSelector } from "react-redux";
 import {
   bodaChargesURL,
@@ -102,7 +102,7 @@ const Charges = () => {
   };
 
   useEffect(() => {
-    chargeHandler(
+    getChargesHandler(
       truckChargesURL,
       currentTruckPage,
       token,
@@ -113,7 +113,7 @@ const Charges = () => {
   }, [currentTruckPage, token]);
 
   useEffect(() => {
-    chargeHandler(
+    getChargesHandler(
       bodaChargesURL,
       currentBodaPage,
       token,
@@ -124,7 +124,7 @@ const Charges = () => {
   }, [currentBodaPage, token]);
 
   useEffect(() => {
-    chargeHandler(
+    getChargesHandler(
       carChargesURL,
       currentCarPage,
       token,
@@ -135,7 +135,7 @@ const Charges = () => {
   }, [currentCarPage, token]);
 
   useEffect(() => {
-    chargeHandler(
+    getChargesHandler(
       taxiChargesURL,
       currentTaxiPage,
       token,
@@ -146,7 +146,7 @@ const Charges = () => {
   }, [currentTaxiPage, token]);
 
   useEffect(() => {
-    chargeHandler(
+    getChargesHandler(
       coasterChargesURL,
       currentCoasterPage,
       token,
