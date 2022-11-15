@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const COLUMNS = [
   {
     Header: "Id.",
@@ -34,5 +36,19 @@ export const COLUMNS = [
     Cell: (row) => {
       return <span>{row.row.original.model}</span>;
     },
+  },
+  {
+    // width: 300,
+    Header: "Action",
+    Cell: ({ cell }) => (
+      <Link to={`/vehicles/${cell.row.values.id}`}>
+        <button
+          value={cell.row.values.name}
+          className="flex items-center justify-between bg-slate-500 py-2 px-2 w-fit border-0 font text-white text-md rounded-md transition ease-in-out delay-400 hover:bg-slate-600"
+        >
+          View
+        </button>
+      </Link>
+    ),
   },
 ];
