@@ -21,6 +21,6 @@ export const clinicService = `${host}/api/v1/cartyreservices`;
 export const truckChargesURL = `${host}/api/v1/truckcharges`;
 export const taxiChargesURL = `${host}/api/v1/taxicharges`;
 export const bodaChargesURL = `${host}/api/v1/bodacharges`;
-export const carChargesURL = `${host}/api/v1/taxicharges`;
+export const carChargesURL = `${host}/api/v1/carcharges`;
 export const coasterChargesURL = `${host}/api/v1/coastercharges`;
 
