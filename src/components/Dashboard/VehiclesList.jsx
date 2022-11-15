@@ -10,6 +10,7 @@ import { toastOptions } from "../../utils/toastFile";
 import VehicleTable from "./Tables/VehicleTable";
 import Pagination from "./Tables/Pagination";
 import { vehicleActions } from "../../store/vehicleSlice";
+import { Link } from "react-router-dom";
 
 const VehiclesList = () => {
   const [show, setShow] = useState(false);
@@ -61,7 +62,7 @@ const VehiclesList = () => {
       console.log(data.meta.total_count);
       dispatch(
         vehicleActions.getVehicles({
-          allVehicles: data.meta.total_count,
+          vehicleCount: data.meta.total_count,
         })
       );
 
@@ -81,7 +82,7 @@ const VehiclesList = () => {
       <Sidebar />
       <div className="w-full md:ml-[220px] md:w-screen h-screen flex flex-col">
         <DashNavbar />
-        <div className="p-2 mt-5 md:p-10 md:mt-10 ">
+        <div className="p-2 mt-5 md:p-10 md:mt-10 text-gray-700">
           <div className="shadow-md border-slate-500 rounded-lg">
             <div className="flex flex-row items-center justify-between mb-8 p-2 text-md">
               <h3 className="font-bold">Vehicles</h3>
@@ -100,7 +101,7 @@ const VehiclesList = () => {
                 id="search"
                 type="text"
                 onChange={handleSearch}
-                className="ml-2 pl-2 pt-1 border rounded-md border-gray-400 focus:outline-none"
+                className="ml-2 pl-2 pt-1 pb-1 border rounded-md border-gray-400 focus:outline-none"
               />
             </label>
             <VehicleTable data={vehicles} />
@@ -111,6 +112,46 @@ const VehiclesList = () => {
                 rowsPerPage={5}
               />
             </div>
+
+            {/* <table className="w-full table-auto border-[#0000000f]  text-lightBlack">
+              <thead className="border-black bg-gray-100">
+                <tr className="p-3 ">
+                  <th className="p-3">ID</th>
+                  <th className="p-3">Name</th>
+                  <th className="p-3">Plate</th>
+                  <th className="p-3">Type</th>
+                  <th className="p-3">Model</th>
+                  <th className="p-3">Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {vehicles.map((vehicle, index) => (
+                  <tr
+                    data-index={index}
+                    className="text-center hover:cursor-pointer hover:bg-gray-50"
+                  >
+                    <td className="p-4">{vehicle.id}</td>
+                    <td className="p-4">{vehicle.driver_name}</td>
+                    <td className="p-4">{vehicle.number_plate}</td>
+                    <td className="p-4">{vehicle.car_type}</td>
+                    <td className="p-4">{vehicle.model}</td>
+                    <td>
+                      <Link to={`/vehicles/${vehicle.id}`}>
+                        <button className="flex items-center justify-between bg-slate-500 py-2 px-2 w-fit border-0 font text-white text-md rounded-md transition ease-in-out delay-400 hover:bg-slate-600">
+                          View
+                        </button>
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <Pagination
+              totalRows={totalData}
+              pageChangeHandler={setCurrentPage}
+              rowsPerPage={5}
+            /> */}
           </div>
         </div>
       </div>
