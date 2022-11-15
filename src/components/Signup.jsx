@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import Modal from "./Modal";
+import Modal from "./UI/Modal";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import Signin from "./Signin";
@@ -35,7 +35,7 @@ const Signup = (props) => {
       <Modal onClose={props.onCloseSignup}>
         <div className="flex flex-row justify-end ">
           <button className="hover:border-gray-600">
-            <AiOutlineClose size={20} onClick={props.onClose} />
+            <AiOutlineClose size={20} onClick={props.onCloseSignup} />
           </button>
         </div>
         <div className="flex flex-col justify-center items-center gap-4 mb-10">
