@@ -3,11 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 const vehicleSlice = createSlice({
   name: "vehicle",
   initialState: {
-    allVehicles: [],
+    vehicleCount: 0,
+    allVehicles: []
   },
   reducers: {
     getVehicles(state, action) {
+      state.vehicleCount = action.payload.vehicleCount;
       state.allVehicles = action.payload.allVehicles;
+      // add vehicles to state vehicles
     },
   },
 });
