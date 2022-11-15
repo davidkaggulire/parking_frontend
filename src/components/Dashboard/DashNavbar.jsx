@@ -106,7 +106,7 @@ const DashNavbar = () => {
           </div>
 
           <div className="hidden md:flex justify-between gap-4 items-center mr-5 ">
-            <img className="rounded-full h-10 bg-black" src={Avatar} alt="" />
+            <img className="rounded-full h-10 border-2 border-slate-400 " src={Avatar} alt="" />
             <p>{username}</p>
             <BiDotsVerticalRounded
               size={25}
