@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import Modal from "./Modal";
+import Modal from "./UI/Modal";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import Signup from "./Signup";
@@ -32,8 +32,8 @@ const Signin = (props) => {
   const [show, setShow] = useState(false);
 
   const showSignUpHandler = () => {
-    setShow(true);
     props.onClose();
+    setShow(true);
     console.log("hello winner");
   };
 
