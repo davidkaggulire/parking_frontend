@@ -90,10 +90,9 @@ export const getVehicleHandler = (token, setLoading) => {
       }
 
       if (data.status === "success") {
-        console.log(data.meta.total_count);
         dispatch(
           vehicleActions.getVehicles({
-            allVehicles: data.meta.total_count,
+            vehicleCount: data.meta.total_count,
           })
         );
 
