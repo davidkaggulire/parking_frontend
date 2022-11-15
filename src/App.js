@@ -18,6 +18,10 @@ const VehiclePage = React.lazy(() =>
   import("./components/Dashboard/VehiclesList")
 );
 
+const VehicleDetails = React.lazy(() =>
+  import("./components/Dashboard/VehicleDetails")
+);
+
 const ClinicPage = React.lazy(() =>
   import("./components/pages/ClinicListPage")
 );
@@ -64,6 +68,7 @@ function App() {
         {isLoggedIn && <Route path="/cartypes" element={<CartypesPage />} />}
         {isLoggedIn && <Route path="/charges" element={<ChargesPage />} />}
         {isLoggedIn && <Route path="/vehicles" element={<VehiclePage />} />}
+        {isLoggedIn && <Route path="/vehicles/:vehicleId" element={<VehicleDetails />} />}
         {isLoggedIn && <Route path="/clinic" element={<ClinicPage />} />}
         <Route path="*" element={<NotFound />} />
       </Routes>
