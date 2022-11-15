@@ -38,7 +38,10 @@ const GeneralTable = (props) => {
     {
       columns,
       data,
-      manualPagination: true
+      manualPagination: true,
+      initialState: {
+        hiddenColumns: ["plate", "type", "model"]
+      }
     }
   );
 
@@ -81,7 +84,7 @@ const GeneralTable = (props) => {
             return (
               <tr
                 {...row.getRowProps()}
-                className="  text-center hover:cursor-pointer hover:bg-gray-50"
+                className="text-center hover:cursor-pointer hover:bg-gray-50"
               >
                 {row.cells.map((cell) => {
                   return (
