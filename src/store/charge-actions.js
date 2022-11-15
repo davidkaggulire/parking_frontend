@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import { toastOptions } from "../../src/utils/toastFile";
 
-export const chargeHandler = async (url, page, token, setLoading, setData, setTotalData ) => {
+export const getChargesHandler = async (url, page, token, setLoading, setData, setTotalData ) => {
   setLoading(true);
   const response = await fetch(url + `?page=${page}`, {
     method: "GET",
