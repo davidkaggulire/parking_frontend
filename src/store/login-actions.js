@@ -150,7 +150,7 @@ export const postLoginData = (inputData, url, navigate, setIsLoading) => {
         })
       );
 
-      toast.error("Error logging in", toastOptions);
+      toast.error("ERR_CONNECTION_REFUSED", toastOptions);
       setIsLoading(false)
     }
   };
