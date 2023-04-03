@@ -2,7 +2,6 @@ import React, { Fragment, useState } from "react";
 import Modal from "./UI/Modal";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
-import Signup from "./Signup";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import LoadingSpinner from "./UI/LoadingSpinner";
@@ -31,15 +30,7 @@ const Signin = (props) => {
 
   const [show, setShow] = useState(false);
 
-  const showSignUpHandler = () => {
-    props.onClose();
-    setShow(true);
-    console.log("hello winner");
-  };
-
-  const hideSignUpHandler = () => {
-    setShow(false);
-  };
+  const [showModal, setShowModal] = useState(false);
 
   const togglePassword = () => {
     if (passwordType === "password") {
@@ -93,7 +84,6 @@ const Signin = (props) => {
 
   return (
     <Fragment>
-      {show && <Signup onCloseSignup={hideSignUpHandler} />}
       <div className="">{isLoading && <LoadingSpinner />}</div>
       <Modal onClose={props.onClose}>
         <div className="flex flex-row justify-end ">
@@ -152,18 +142,18 @@ const Signin = (props) => {
               <p>Don't have an account? </p>
               <p
                 className="text-[blue] hover:underline cursor-pointer"
-                onClick={() => {
-                  showSignUpHandler();
-                  // props.onClose();
-                }}
+                onClick={() => props.openModal("sign-up")}
               >
                 Register
               </p>
             </div>
 
             <div className="mt-2 flex justify-between">
-              <span className="text-[blue] hover:underline">
-                <a href="/resetPassword">Forgot Password?</a>
+              <span className="text-[blue] hover:underline cursor-pointer">
+                <p onClick={() => {
+                  props.openModal("reset-pass")}}>
+                  Forgot Password?
+                </p>
               </span>
 
               <span className="text-[blue] hover:underline">
