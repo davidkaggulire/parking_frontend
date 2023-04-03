@@ -118,10 +118,10 @@ const DashNavbar = () => {
       </nav>
       {menu && (
         <div className="fixed w-[15%] right-0 top-16 shadow-md mr-2 flex justify-end p-6 pr-5 border-1 rounded-md bg-gradient-to-r from-gray-100 to-gray-100 z-600">
-          <ul className="flex flex-col items-center">
-            <p onClick={logoutHandler} className="p-2 hover:cursor-pointer">
+          <ul className="flex flex-col items-center  hover:to-blue-700">
+            <li onClick={logoutHandler} className="p-1 hover:cursor-pointer">
               Logout
-            </p>
+            </li>
             {/* <p onClick={logoutHandler} className="p-2">Logout</p>
           <p onClick={logoutHandler} className="p-2">Logout</p> */}
           </ul>

@@ -3,6 +3,37 @@ import { useMemo } from "react";
 import { forwardRef, useEffect, useRef } from "react";
 import { useTable } from "react-table";
 
+import { useReactTable, createColumnHelper } from '@tanstack/react-table'
+
+const columnHelper = createColumnHelper();
+
+const columns = [
+  columnHelper.group({
+    id: "tv-show",
+    header: "TV Show",
+    columns: [
+      columnHelper.accessor("show.name", {
+        header: () => "Name",
+      }),
+      columnHelper.accessor("show.type", {
+        header: () => "Type",
+      }),
+    ],
+  }),
+  columnHelper.group({
+    header: "Details",
+    columns: [
+      columnHelper.accessor("show.language", {
+        header: () => "Language",
+      }),
+      columnHelper.accessor("show.genres", {
+        header: () => "Genre(s)",
+      }),
+    ],
+    // . . .
+  }),
+];
+
 
 const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
   const defaultRef = useRef();
