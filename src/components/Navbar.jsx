@@ -2,26 +2,35 @@ import React, { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import Signin from "./Signin";
 import { FaParking } from "react-icons/fa";
+import Signup from "./Signup";
+import ResetPassword from "./ResetPassword";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
-  const [show, setShow] = useState(false);
+
+  const [activeModal, setActiveModal] = useState('null');
+
+  function openModal(modalName) {
+    setActiveModal(modalName);
+  }
+
+  function closeModal() {
+    setActiveModal('null');
+  }
 
   const handleNav = () => {
     setNav(!nav);
   };
 
   const showSignInHandler = () => {
-    setShow(true);
-  };
-
-  const hideSignInHandler = () => {
-    setShow(false);
+    setActiveModal('signin')
   };
 
   return (
     <div className="container mx-auto">
-      {show && <Signin onClose={hideSignInHandler} />}
+      {activeModal === 'signin'  && <Signin onClose={closeModal} openModal={openModal}/>}
+      {activeModal === 'sign-up' && <Signup onClose={closeModal} openModal={openModal} closeModal={() => setActiveModal('signin')}/>}
+      {activeModal === 'reset-pass' && <ResetPassword onClose={closeModal} openModal={openModal} closeModal={() => setActiveModal('signin')}/>}
       <ul className="container w-full flex items-center justify-between p-4 text-black text-center">
         <div className=" md:flex space-x-6">
           <li className="uppercase text-2xl font-bold italic flex gap-1 items-center">
