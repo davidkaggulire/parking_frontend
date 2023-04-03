@@ -2,20 +2,9 @@ import React, { Fragment, useState } from "react";
 import Modal from "./UI/Modal";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
-import Signin from "./Signin";
 
 const Signup = (props) => {
   const [passwordType, setPasswordType] = useState("password");
-
-  const [show, setShow] = useState(false);
-
-  const showSignInHandler = () => {
-    setShow(true);
-  };
-
-  const hideSignInHandler = () => {
-    setShow(false);
-  };
 
   const togglePassword = () => {
     if (passwordType === "password") {
@@ -31,18 +20,17 @@ const Signup = (props) => {
 
   return (
     <Fragment>
-      {show && <Signin onClose={hideSignInHandler} />}
-      <Modal onClose={props.onCloseSignup}>
+      <Modal onClose={props.onClose}>
         <div className="flex flex-row justify-end ">
           <button className="hover:border-gray-600">
-            <AiOutlineClose size={20} onClick={props.onCloseSignup} />
+            <AiOutlineClose size={20} onClick={props.onClose} />
           </button>
         </div>
         <div className="flex flex-col justify-center items-center gap-4 mb-10">
           <form onSubmit={submitHandler}>
             <div className="flex items-center gap-4 justify-center">
               <h1 className="capitalize text-brightGreen text-2xl md:text-3xl">
-            Register with Parkey
+                Register with Parkey
               </h1>
             </div>
 
@@ -80,13 +68,13 @@ const Signup = (props) => {
               Create Account
             </button>
             <div className="mt-5 flex flex-row gap-2">
-              <p>
-                Already have an account?{" "}
-                
+              <p>Already have an account? </p>
+              <p
+                className="text-[blue] hover:underline cursor-pointer"
+                onClick={() => props.openModal("signin")}
+              >
+                Sign In
               </p>
-              <p className="text-[blue] hover:underline" onClick={showSignInHandler}>
-                  Sign In
-                </p>
             </div>
           </form>
         </div>
