@@ -9,7 +9,7 @@ export const COLUMNS = [
   },
   {
     Header: "Name",
-    accessor: "name",
+    accessor: "driver_name",
     sticky: "left",
     Cell: (row) => {
       return <span>{row.row.original.driver_name}</span>;
@@ -17,7 +17,7 @@ export const COLUMNS = [
   },
   {
     Header: "Plate",
-    accessor: "plate",
+    accessor: "number_plate",
     sticky: "left",
     Cell: (row) => {
       return <div>{row.row.original.number_plate}</div>;
@@ -25,7 +25,7 @@ export const COLUMNS = [
   },
   {
     Header: "Type",
-    accessor: "type",
+    accessor: "car_type",
     Cell: (row) => {
       return <span>{row.row.original.car_type}</span>;
     },
