@@ -15,6 +15,7 @@ const Cartypes = () => {
   const token = useSelector((state: any) => state.login.token);
   const [vehicles, setVehicles] = useState([]);
   const [totalData, setTotalData] = useState(0);
+  const [noData, setNoData] = useState(false);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = React.useState("");
 
@@ -50,6 +51,9 @@ const Cartypes = () => {
     }
 
     if (data.status === "success") {
+      if(data.length <= 0) {
+        setNoData(true)
+      }
       setVehicles(data.car_types);
       setTotalData(data.meta.total_count);
       console.log(data.meta.total_count);

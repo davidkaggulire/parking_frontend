@@ -78,7 +78,6 @@ const Signup = (props: any) => {
       setIsLoading(true);
       const { password, email } = values;
       console.log("clicked");
-      console.log(password, email);
 
       const inputData = {
         password: password,
