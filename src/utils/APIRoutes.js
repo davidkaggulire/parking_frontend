@@ -1,4 +1,5 @@
-export const host = "http://localhost:5000";
+// export const host = "http://localhost:5000";
+export const host = "https://parkville-parking.vercel.app";
 
 export const getAllUsersRoute = `${host}/api/v1/users`;
 export const registerRoute = `${host}/api/v1/auth/signup`;
