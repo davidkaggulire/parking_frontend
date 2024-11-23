@@ -47,8 +47,6 @@ const ResetPassword = (props: any) => {
 
       const res = await sendPasswordReset(email);
 
-      console.log(res);
-
       if (res.status === "fail") {
         console.log("failed");
 

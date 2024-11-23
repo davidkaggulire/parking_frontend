@@ -45,14 +45,14 @@ const MainDashboard = () => {
   }, [token, setLoading])
 
   return (
-    <div className="p-6 xs:p-10 sm:p-8 md:p-10 lg:p-10 w-full md:w-full lg:w-full flex flex-col gap-2 h-[100vh]">
+    <div className="p-6 xs:p-10 sm:p-8 md:p-10 lg:p-10 w-full md:w-full lg:w-full flex flex-col gap-2 h-[100vh] text-gray-600">
       <div className="flex flex-row gap-6 xs:flex-row sm:flex-row md:flex-row lg:flex-row xs:gap-10 sm:gap-6 md:gap-12 lg:gap-14 flex-wrap md:flex-wrap items-center ">
         <div
           onClick={vehicleNav}
           className="flex flex-col-reverse items-center h-40 w-36 xs:w-36 sm:w-60 md:w-48 lg:w-1/5 md:flex-row justify-between md:gap-6 lg:gap-6 border-1 border-transparent rounded-md shadow-md p-6 hover:cursor-pointer hover:shadow-lg "
         >
           <div className="text-xl">
-            <h3 className="text-gray-700">Vehicles</h3>
+            <h3 className="text-gray-600">Vehicles</h3>
             <p className="text-4xl text-gray-700">{vehicles}</p>
           </div>
           <div>
@@ -73,9 +73,9 @@ const MainDashboard = () => {
           onClick={clinicNav}
           className="flex flex-col-reverse items-center h-40 w-36 xs:w-36 sm:w-60 md:w-48 lg:w-1/5 md:flex-row justify-between gap-6 border-1 border-transparent rounded-md shadow-md p-6 hover:cursor-pointer hover:shadow-lg"
         >
-          <div className="text-xl text-gray-700">
+          <div className="text-xl text-gray-600">
             <h3>Car Clinic</h3>
-            <p className="text-4xl text-gray-700">20</p>
+            <p className="text-4xl text-gray-600">20</p>
           </div>
           <div>
             <MdOutlineLocalHospital size={30} />

@@ -6,7 +6,7 @@ export const postCarType = (
   url: any,
   navigate: any,
   setIsLoading: any,
-  token: any,
+  token: any
 ) => {
   return async () => {
     const authCheck = async () => {
@@ -39,7 +39,13 @@ export const postCarType = (
         toast.error(authData.message, toastOptions);
 
         setIsLoading(false);
-      } else if (authData.status === "error") {
+      }
+      else if (authData.status === "info") {
+        console.log(authData.messages);
+        toast.error("Car type already exists", toastOptions);
+        setIsLoading(false);
+      }
+       else if (authData.status === "error") {
         console.log(authData.messages);
         toast.error("Value already exists", toastOptions);
         setIsLoading(false);

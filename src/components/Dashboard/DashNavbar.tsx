@@ -17,8 +17,6 @@ const DashNavbar = () => {
 
   const token = useSelector((state: any) => state.login.token);
 
-  console.log(email)
-
   // getting username from email
   const username = email.slice(0, email.indexOf("@"));
 
